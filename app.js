@@ -11,9 +11,7 @@ app.use(cors());
 app.use(express.static('./dist/frontend'));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.get('/*',function(req,res){
-  res.sendFile(path.join(__dirname+'/dist/frontend/index.html'))
-});
+
 username='';
 password='';
 function verifyToken(req, res, next) {
@@ -193,6 +191,9 @@ authorSchema.findByIdAndUpdate({"_id":id},
         res.send();
     })
   })
+  app.get('/*',function(req,res){
+    res.sendFile(path.join(__dirname+'/dist/frontend/index.html'))
+  });
   app.listen(port,()=>{
     console.log("server is ready at port "+port)
 });
